@@ -1,0 +1,13 @@
+import pandas as pd
+import numpy as np
+from sklearn.neighbors import KNeighborsClassifier as knn
+X1 = [7,7,3,1]
+X2 = [7,4,4,4]
+Class = np.array(['"Fail"','"Fail"','"Pass"','"Pass"'])
+train_x = np.array([X1,X2]).transpose()
+test_x = [[3,4]]
+knn = knn(n_neighbors=3)
+knn.fit(train_x, Class)
+pred = pd.DataFrame(knn.predict(test_x))
+print(pred.iloc[0,0])
+pred.to_csv('/code/output.csv',index = False,header = False,sep=",")
